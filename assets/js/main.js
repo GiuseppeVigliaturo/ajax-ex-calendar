@@ -1,10 +1,10 @@
-var capodanno;
-var epifania;
-
-
     $.ajax({
           url : "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
           method : "GET",
+          // data:{
+          //   year:2018,
+          //   month:selectedMonth
+          // },
           success : function (data) {
             var store = data.response;
             // console.table(store);
@@ -21,23 +21,28 @@ var epifania;
                       // console.log(currentDay);
                       var currentMonth = moment(currentDate).format('MMMM');
 
+                      $('.content').append('<li data-date="'+currentDate+'">'+currentMonth+" "+currentDay+'</li>');
+
+                      }
+
 
                       store.forEach(myFunction);
 
                       function myFunction(item) {
-                        // console.log(item);
-                        if (currentDate === item.date) {
-                          console.log("festa");
-                          //Inserisco nell'html il mio li con attributo per eventuali selettori e la relativa data formattata
-                            $('.content').append('<li data-date="'+currentDate+'">'+currentMonth+" "+currentDay+" "+item.name+'</li>');
+                        var datafesta = item.date;
+                        var nomefesta = item.name;
 
+                        var elementoSelez = $("li[data-date='" + datafesta + "']");
+                        console.log(elementoSelez);
+
+                        if(elementoSelez){
+                          var dataquelgiorno = elementoSelez.text();
+                              elementoSelez.addClass("red").text(dataquelgiorno+" "+ nomefesta);
                         }
 
-                        else {
-                            $('.content').append('<li data-date="'+currentDate+'">'+currentMonth+" "+currentDay+'</li>');
-                        }
+
                       }
-                  }
+
           },
 
           error : function (errore) {
