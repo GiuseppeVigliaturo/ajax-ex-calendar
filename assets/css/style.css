@@ -2,3 +2,17 @@
 {
   color: red;
 }
+.sceltamese
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color:rgb(147, 165, 203) ;
+  font-size: 2em;
+}
+.grid-item
+{
+  padding: 30px;
+  border: 2px solid black;
+  display: inline-block;
+}
