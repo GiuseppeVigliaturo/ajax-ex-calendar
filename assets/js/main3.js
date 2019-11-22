@@ -17,26 +17,38 @@ $("select").click(function(){
   $(".sceltamese .successivo").click(function(){
     //ripulisco lo schermo a ogni click
     $(".content").html("");
+    if (selectedMonth ==12) {
+      selectedMonth =0;
+    }
 
-//incremento la variabile che contiene il numero del mese di uno ad ogni click cosi da passare ai mesi successivi
-      selectedMonth +=1;
+  else {
+    //incremento la variabile che contiene il numero del mese di uno ad ogni click cosi da passare ai mesi successivi
+          selectedMonth +=1;
 
-      console.log("ho aumentato il mese di uno");
-//ristampo il nuovo mese passando il parametro aggiornato alla funzione che mi stampa in pagina i giorni
-      chiamataapi(selectedMonth);
+          console.log("ho aumentato il mese di uno");
+    //ristampo il nuovo mese passando il parametro aggiornato alla funzione che mi stampa in pagina i giorni
+          chiamataapi(selectedMonth);
+  }
+
 
    });
 
    $(".sceltamese .precedente").click(function(){
      //ripulisco lo schermo a ogni click
      $(".content").html("");
+     if (selectedMonth ==0) {
+       selectedMonth = 12;
+     }
+     else {
+       //decremento la variabile che contiene il numero del mese di uno ad ogni click cosi da passare ai mesi precedenti
 
-     //decremento la variabile che contiene il numero del mese di uno ad ogni click cosi da passare ai mesi precedenti
+        selectedMonth -= 1;
+         console.log("ho decrementato di uno");
+         //ristampo il nuovo mese passando il parametro aggiornato alla funzione che mi stampa in pagina i giorni
+         chiamataapi(selectedMonth);
+     }
 
-      selectedMonth -= 1;
-       console.log("ho decrementato di uno");
-//ristampo il nuovo mese passando il parametro aggiornato alla funzione che mi stampa in pagina i giorni
-       chiamataapi(selectedMonth);
+
 
     });
 
@@ -60,6 +72,36 @@ $("select").click(function(){
         $('.content').append('<div class="grid-item" data-date="'+currentDate+'">'+currentMonth+" "+currentDay+'</div>');
 
         }
+        //faccio apparire tanti quadrati prima a seconda del giorno di inizio mesescelto
+        //prendo il primo figlio di content
+        var firstelem =  $("div:first-child");
+        //mi faccio restituire il testo all'interno vedo quale giorno contiene
+        var firstday = firstelem.text();
+        console.log(firstday);
+        //con un ciclo stampo tanti div vuoti a seconda del giorno
+        if (firstday.includes("martedì")) {
+          var daystart = 1
+        }
+        else if (firstday.includes("mercoledì")) {
+          var daystart = 2
+        }
+        else if (firstday.includes("giovedì")) {
+          var daystart = 3
+        }
+        else if (firstday.includes("venerdì")) {
+          var daystart = 4
+        }
+        else if (firstday.includes("sabato")) {
+          var daystart = 5
+        }
+        else if (firstday.includes("domenica")) {
+          var daystart = 6
+        }
+        for (var i = 0; i < daystart; i++) {
+          $('.content').prepend('<div class="grid-item">'+'</div>');
+        }
+
+
     }
 
     //funzione che controlla se ci siano feste in quel dato mese
