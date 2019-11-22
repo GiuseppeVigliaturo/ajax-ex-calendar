@@ -10,6 +10,11 @@
   background-color:rgb(147, 165, 203) ;
   font-size: 2em;
 }
+.content
+{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+}
 .grid-item
 {
   padding: 30px;
