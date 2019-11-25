@@ -16,6 +16,7 @@ $("select").click(function(){
 
   $(".sceltamese .successivo").click(function(){
     //ripulisco lo schermo a ogni click
+    
     $(".content").html("");
     if (selectedMonth ==12) {
       selectedMonth =0;
@@ -74,11 +75,15 @@ $("select").click(function(){
         }
         //faccio apparire tanti quadrati prima a seconda del giorno di inizio mesescelto
         //prendo il primo figlio di content
-        var firstelem =  $("div:first-child");
+        var firstelem =  $( "div:first-child");
+        var lastelement = $("div:last-child");
+        
         //mi faccio restituire il testo all'interno vedo quale giorno contiene
         var firstday = firstelem.text();
         console.log(firstday);
-        //con un ciclo stampo tanti div vuoti a seconda del giorno
+        var lastday = lastelement.text();
+        console.log(lastday);
+        //con un ciclo stampo all'inizio della pagina tanti div vuoti a seconda del giorno
         if (firstday.includes("martedì")) {
           var daystart = 1
         }
@@ -99,6 +104,36 @@ $("select").click(function(){
         }
         for (var i = 0; i < daystart; i++) {
           $('.content').prepend('<div class="grid-item">'+'</div>');
+        }
+
+        
+        
+
+      //con un ciclo stampo alla fine della pagina tanti div vuoti a seconda del giorno
+
+
+        if (lastday.includes("lunedì")) {
+          var dayend = 6
+        }
+        else if (lastday.includes("martedì")) {
+          var  dayend = 5
+        }
+        else if (lastday.includes("mercoledì")) {
+          var  dayend = 4
+        }
+        else if (lastday.includes("giovedì")) {
+          var  dayend = 3
+        }
+        else if (lastday.includes("venerdì")) {
+          var  dayend = 2
+        }
+        else if (lastday.includes("sabato")) {
+          var  dayend = 1
+        }
+        for (var i = 0; i <  dayend; i++) {
+          $('.content').append('<div class="grid-item">'+'</div>');
+          console.log("scope",dayend);
+          
         }
 
 
@@ -145,3 +180,6 @@ $("select").click(function(){
                }
              }); //fine funzione ajax
     }
+
+    
+    

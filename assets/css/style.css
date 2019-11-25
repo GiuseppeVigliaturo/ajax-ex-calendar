@@ -17,10 +17,15 @@
 }
 .grid-item
 {
-  padding: 30px;
+  padding: 20px;
   border: 2px solid black;
   display: inline-block;
 }
+.grid-item:hover
+{
+  background-color: pink;
+}
+
 .sceltamese .successivo
 {
   cursor: pointer;
@@ -28,4 +33,7 @@
 .sceltamese .precedente
 {
   cursor: pointer;
+}
+.content{
+  margin: 30px;
 }
